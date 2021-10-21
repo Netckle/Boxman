@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 포탈에 박스가 충돌하면 연결된 포탈의 발사지점으로 워프시킨다.
+/// </summary>
 public class Portal : MonoBehaviour
 {
-    public GameObject spawnPos; 
-    public GameObject sameTypePortal;
+    public Transform shootPoint; 
+    public Portal pairPortal;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Box")
-        {
-            // 충돌한 박스 오브젝트를 지정된 위치로 순간이동 시킨다.
-            collision.gameObject.transform.position = sameTypePortal.GetComponent<Portal>().spawnPos.transform.position;
-            // 포탈과 충돌할 때마다 박스의 이동속도를 증가시킨다.
-            //collision.gameObject.GetComponent<Box>().AccelBoxSpeed();
+        {          
+            collision.gameObject.transform.position = pairPortal.shootPoint.position;            
         }
     }
 }

@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
 	public Transform feetPos;
 	public LayerMask whatIsGround;
 
-	public MOVE_DIR playerDir = MOVE_DIR.IDLE;
+	public enum CharacterDirection { Right, Left }
+	public CharacterDirection direction;
 
     public Animator animator;
 
@@ -33,14 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
-
-	}
-
-	void FixedUpdate()
-	{
 		OnMove();
 		OnJump();
 	}
+
 	// 플레이어 이동 함수
 	void OnMove()
 	{
